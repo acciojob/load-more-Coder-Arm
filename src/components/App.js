@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './../styles/App.css';
 
 const items = [
@@ -36,9 +36,28 @@ const items = [
 ];
 
 const App = () => {
+  const [count,setCount] = useState(0);
+  const [data,setData] = useState([]);
+
+  useEffect(() => {
+    setData(items.filter((item,idx) => {
+      return idx <=count-1
+    }))
+  },[count])
+  
+  function dataHandle(){
+      setCount((prevCount) => prevCount+10)
+  }
   return (
     <div>
-        {/* Do not remove the main div */}
+      <ul>
+      { 
+      data.map(item => {
+        return <li>{item}</li>
+      })
+      }
+        <button onClick={dataHandle}>Load More</button>
+        </ul>
     </div>
   )
 }
