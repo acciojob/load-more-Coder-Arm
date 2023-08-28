@@ -41,7 +41,7 @@ const App = () => {
 
   useEffect(() => {
     setData(items.filter((item,idx) => {
-      return idx <=count-1
+      return  idx <= count-1
     }))
   },[count])
   
